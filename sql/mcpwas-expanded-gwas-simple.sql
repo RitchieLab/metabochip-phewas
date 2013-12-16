@@ -29,8 +29,10 @@ SELECT
   qGWAS.ncbi_downstream_gene_dist,
   qGWAS.gwas_upstream_disease_trait,
   qGWAS.gwas_upstream_distance,
+  qGWAS.gwas_upstream_pubmedid,
   qGWAS.gwas_downstream_disease_trait,
-  qGWAS.gwas_downstream_distance
+  qGWAS.gwas_downstream_distance,
+  qGWAS.gwas_downstream_pubmedid
 FROM (
   /* add upstream/downstream GWAS annotation for each SNP */
   SELECT
@@ -47,8 +49,10 @@ FROM (
     qGenes.ncbi_downstream_gene_dist,
     gcGWASU.disease_trait AS gwas_upstream_disease_trait,
     -(gcGWASU.pos - qGenes.pos) AS gwas_upstream_distance,
+    gcGWASU.pubmedid AS gwas_upstream_pubmedid,
     gcGWASD.disease_trait AS gwas_downstream_disease_trait,
     (gcGWASD.pos - qGenes.pos) AS gwas_downstream_distance
+    gcGWASD.pubmedid AS gwas_downstream_pubmedid,
   FROM (
     /* add upstream/inside/downstream gene annotation for each SNP */
     SELECT
