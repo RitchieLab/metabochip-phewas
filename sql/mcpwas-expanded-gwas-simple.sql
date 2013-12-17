@@ -51,8 +51,8 @@ FROM (
     -(gcGWASU.pos - qGenes.pos) AS gwas_upstream_distance,
     gcGWASU.pubmedid AS gwas_upstream_pubmedid,
     gcGWASD.disease_trait AS gwas_downstream_disease_trait,
-    (gcGWASD.pos - qGenes.pos) AS gwas_downstream_distance
-    gcGWASD.pubmedid AS gwas_downstream_pubmedid,
+    (gcGWASD.pos - qGenes.pos) AS gwas_downstream_distance,
+    gcGWASD.pubmedid AS gwas_downstream_pubmedid
   FROM (
     /* add upstream/inside/downstream gene annotation for each SNP */
     SELECT
